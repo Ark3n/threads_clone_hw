@@ -28,9 +28,9 @@ class FeedScreen extends StatelessWidget {
           ),
         ],
       ),
-
-      // List of all posts
-      body: BlocBuilder<FeedCubit, FeedState>(
+      //List of all posts
+      body: BlocConsumer<FeedCubit, FeedState>(
+        listener: (context, state) {},
         builder: (context, state) {
           switch (state.status) {
             case FeedStatus.initial:

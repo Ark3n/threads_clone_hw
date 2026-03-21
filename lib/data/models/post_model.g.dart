@@ -22,13 +22,14 @@ class PostModelAdapter extends TypeAdapter<PostModel> {
       authorId: fields[2] as String,
       createdAt: fields[3] as String,
       likes: (fields[4] as num).toInt(),
+      isLiked: fields[5] == null ? false : fields[5] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, PostModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class PostModelAdapter extends TypeAdapter<PostModel> {
       ..writeByte(3)
       ..write(obj.createdAt)
       ..writeByte(4)
-      ..write(obj.likes);
+      ..write(obj.likes)
+      ..writeByte(5)
+      ..write(obj.isLiked);
   }
 
   @override
@@ -62,6 +65,7 @@ _PostModel _$PostModelFromJson(Map<String, dynamic> json) => _PostModel(
   authorId: json['authorId'] as String,
   createdAt: json['createdAt'] as String,
   likes: (json['likes'] as num).toInt(),
+  isLiked: json['isLiked'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$PostModelToJson(_PostModel instance) =>
@@ -71,4 +75,5 @@ Map<String, dynamic> _$PostModelToJson(_PostModel instance) =>
       'authorId': instance.authorId,
       'createdAt': instance.createdAt,
       'likes': instance.likes,
+      'isLiked': instance.isLiked,
     };

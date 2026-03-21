@@ -56,18 +56,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Threads clone app',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-
-      // Bloc Provider
-      home: BlocProvider(
-        // Get feed from Local data base
-        create: (_) =>
-            FeedCubit(PostRepositoryImpl(LocalPostDataSource()))..loadFeed(),
-        child: FeedScreen(),
-      ),
+    final local = LocalPostDataSource();
+    final repository = PostRepositoryImpl(local);
+    return BlocProvider(
+      create: (_) => FeedCubit(repository)..loadFeed(),
+      child: MaterialApp(home: FeedScreen()),
     );
   }
 }

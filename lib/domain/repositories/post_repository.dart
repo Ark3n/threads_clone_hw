@@ -6,4 +6,7 @@ abstract class PostRepository {
 
   // Create new post
   Future<void> createPost(Post post);
+
+  // Like post
+  Future<void> likePost(String postId);
 }

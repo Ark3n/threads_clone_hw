@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threads_clone/presentation/bloc/feed_cubit.dart';
+import 'package:threads_clone/presentation/bloc/feed_state.dart';
 
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({super.key});
@@ -29,12 +32,23 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       appBar: AppBar(
         title: Text('New Post'),
         actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              'Publish',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+          BlocConsumer<FeedCubit, FeedState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return TextButton(
+                onPressed: () {
+                  final text = _controller.text.trim();
+                  if (text.isNotEmpty) {
+                    context.read<FeedCubit>().createPost(text);
+                    Navigator.pop(context);
+                  }
+                },
+                child: Text(
+                  'Publish',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              );
+            },
           ),
         ],
       ),

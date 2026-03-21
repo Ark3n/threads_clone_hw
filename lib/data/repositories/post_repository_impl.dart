@@ -8,17 +8,31 @@ class PostRepositoryImpl implements PostRepository {
 
   PostRepositoryImpl(this._local);
 
-  // Create new post and save to Local data source
-  @override
-  Future<void> createPost(Post post) async {
-    await _local.savePost(PostModel.fromEntity(post));
-  }
-
   // Get all posts from local data source
   @override
   Future<List<Post>> getFeed() async {
     final models = await _local.getPosts();
 
     return models.map((model) => model.toEntity()).toList();
+  }
+
+  // Create new post and save to Local data source
+  @override
+  Future<void> createPost(Post post) async {
+    await _local.savePost(PostModel.fromEntity(post));
+  }
+
+  // Like post
+  @override
+  Future<void> likePost(String postId) async {
+    final box = await _local.getPosts();
+
+    final model = box.firstWhere((m) => m.id == postId);
+
+    final updated = model.copyWith(
+      likes: model.isLiked ? model.likes - 1 : model.likes + 1,
+      isLiked: !model.isLiked,
+    );
+    await _local.updatePost(updated);
   }
 }

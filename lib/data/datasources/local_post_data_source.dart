@@ -21,4 +21,9 @@ class LocalPostDataSource {
     final box = await _box;
     await box.clear();
   }
+
+  Future<void> updatePost(PostModel post) async {
+    final box = await _box;
+    await box.put(post.id, post);
+  }
 }
