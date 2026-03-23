@@ -16,6 +16,7 @@ abstract class PostModel with _$PostModel {
     @HiveField(3) required String createdAt,
     @HiveField(4) required int likes,
     @HiveField(5) @Default(false) bool isLiked,
+    @HiveField(6) String? imageUrl,
   }) = _PostModel;
 
   factory PostModel.fromJson(Map<String, dynamic> json) =>
@@ -30,6 +31,7 @@ abstract class PostModel with _$PostModel {
       createdAt: post.createdAt,
       likes: post.likes,
       isLiked: post.isLiked,
+      imageUrl: post.imageUrl,
     );
   }
 
@@ -42,6 +44,7 @@ abstract class PostModel with _$PostModel {
       createdAt: createdAt,
       likes: likes,
       isLiked: isLiked,
+      imageUrl: imageUrl,
     );
   }
 }

@@ -66,5 +66,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>We need came for photo to posts</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access required to Gallery for photo to post</string>
 </dict>
 </plist>
