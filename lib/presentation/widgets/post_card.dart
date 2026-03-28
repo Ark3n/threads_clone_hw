@@ -21,13 +21,13 @@ class PostCard extends StatelessWidget {
               children: [
                 // Post Author name
                 Text(
-                  post.authorId,
+                  post.authorId ?? 'null',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 6),
 
                 // Post content
-                Text(post.content, style: TextStyle(fontSize: 15)),
+                Text(post.content ?? '', style: TextStyle(fontSize: 15)),
                 const SizedBox(height: 10),
 
                 // Buttons: Favorite, comment, refresh

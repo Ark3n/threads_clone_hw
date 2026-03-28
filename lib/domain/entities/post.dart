@@ -1,9 +1,9 @@
 class Post {
-  final String id;
-  final String content;
-  final String authorId;
-  final String createdAt;
-  final int likes;
+  final String? id;
+  final String? content;
+  final String? authorId;
+  final String? createdAt;
+  final int? likes;
   final bool isLiked;
   final String? imageUrl;
 

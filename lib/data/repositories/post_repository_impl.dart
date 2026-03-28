@@ -29,8 +29,10 @@ class PostRepositoryImpl implements PostRepository {
 
     final model = box.firstWhere((m) => m.id == postId);
 
+    final likes = model.likes ?? 0;
+
     final updated = model.copyWith(
-      likes: model.isLiked ? model.likes - 1 : model.likes + 1,
+      likes: model.isLiked ? likes - 1 : likes + 1,
       isLiked: !model.isLiked,
     );
     await _local.updatePost(updated);

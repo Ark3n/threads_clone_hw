@@ -55,8 +55,9 @@ class FeedCubit extends Cubit<FeedState> {
   Future<void> likePost(String postId) async {
     final updatedPosts = state.posts.map((post) {
       if (post.id != postId) return post;
+      final likes = post.likes ?? 0;
       return post.copyWith(
-        likes: post.isLiked ? post.likes - 1 : post.likes + 1,
+        likes: post.isLiked ? likes - 1 : likes + 1,
         isLiked: !post.isLiked,
       );
     }).toList();

@@ -35,7 +35,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       appBar: AppBar(
         title: Text('New Post'),
         actions: [
-          BlocListener<CreatePostCubit, CreatePostState>(
+          BlocConsumer<CreatePostCubit, CreatePostState>(
             listenWhen: (previous, current) =>
                 previous.status != current.status,
             listener: (context, state) {
@@ -53,16 +53,13 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 );
               }
             },
-
-            child: TextButton(
-              onPressed: () {
-                final text = _controller.text.trim();
-                if (text.isNotEmpty) {
-                  final post = context.read<CreatePostCubit>();
-                  post.contentChanged(text);
-                  post.submit();
-                }
-              },
+            // Publish post button
+            builder: (context, state) => TextButton(
+              onPressed: state.canSubmit
+                  ? () {
+                      context.read<CreatePostCubit>().submit();
+                    }
+                  : null,
               child: Text(
                 'Publish',
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -87,44 +84,50 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       hintText: ' What\'s up?',
                       border: InputBorder.none,
                     ),
+                    onChanged: (value) =>
+                        context.read<CreatePostCubit>().contentChanged(value),
                   ),
                 ),
                 const SizedBox(width: 12),
-                BlocBuilder<CreatePostCubit, CreatePostState>(
-                  builder: (context, state) {
-                    if (state.imageUrl == null) return SizedBox.shrink();
-                    return Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.file(
-                            File(state.imageUrl!),
-                            width: 220,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Positioned(
-                          top: 8,
-                          right: 8,
-                          child: GestureDetector(
-                            onTap: () =>
-                                context.read<CreatePostCubit>().removeImage(),
-                            child: Container(
-                              padding: EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                color: Colors.grey.withAlpha(150),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(Icons.close),
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
               ],
             ),
+
+            // Select Image from Gallery
+            BlocBuilder<CreatePostCubit, CreatePostState>(
+              builder: (context, state) {
+                if (state.imageUrl == null) return SizedBox.shrink();
+                return Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.file(
+                        File(state.imageUrl!),
+                        //width: 220,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: GestureDetector(
+                        onTap: () =>
+                            context.read<CreatePostCubit>().removeImage(),
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withAlpha(150),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(Icons.close),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+
+            // Pick IMage from Gallery
             SizedBox(height: 12),
             Row(
               children: [

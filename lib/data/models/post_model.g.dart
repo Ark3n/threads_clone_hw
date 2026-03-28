@@ -17,11 +17,11 @@ class PostModelAdapter extends TypeAdapter<PostModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return PostModel(
-      id: fields[0] as String,
-      content: fields[1] as String,
-      authorId: fields[2] as String,
-      createdAt: fields[3] as String,
-      likes: (fields[4] as num).toInt(),
+      id: fields[0] as String?,
+      content: fields[1] as String?,
+      authorId: fields[2] as String?,
+      createdAt: fields[3] as String?,
+      likes: (fields[4] as num?)?.toInt(),
       isLiked: fields[5] == null ? false : fields[5] as bool,
       imageUrl: fields[6] as String?,
     );
@@ -63,11 +63,11 @@ class PostModelAdapter extends TypeAdapter<PostModel> {
 // **************************************************************************
 
 _PostModel _$PostModelFromJson(Map<String, dynamic> json) => _PostModel(
-  id: json['id'] as String,
-  content: json['content'] as String,
-  authorId: json['authorId'] as String,
-  createdAt: json['createdAt'] as String,
-  likes: (json['likes'] as num).toInt(),
+  id: json['id'] as String?,
+  content: json['content'] as String?,
+  authorId: json['authorId'] as String?,
+  createdAt: json['createdAt'] as String?,
+  likes: (json['likes'] as num?)?.toInt(),
   isLiked: json['isLiked'] as bool? ?? false,
   imageUrl: json['imageUrl'] as String?,
 );

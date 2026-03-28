@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PostModel implements DiagnosticableTreeMixin {
 
-@HiveField(0) String get id;@HiveField(1) String get content;@HiveField(2) String get authorId;@HiveField(3) String get createdAt;@HiveField(4) int get likes;@HiveField(5) bool get isLiked;@HiveField(6) String? get imageUrl;
+@HiveField(0) String? get id;@HiveField(1) String? get content;@HiveField(2) String? get authorId;@HiveField(3) String? get createdAt;@HiveField(4) int? get likes;@HiveField(5) bool get isLiked;@HiveField(6) String? get imageUrl;
 /// Create a copy of PostModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -54,7 +54,7 @@ abstract mixin class $PostModelCopyWith<$Res>  {
   factory $PostModelCopyWith(PostModel value, $Res Function(PostModel) _then) = _$PostModelCopyWithImpl;
 @useResult
 $Res call({
-@HiveField(0) String id,@HiveField(1) String content,@HiveField(2) String authorId,@HiveField(3) String createdAt,@HiveField(4) int likes,@HiveField(5) bool isLiked,@HiveField(6) String? imageUrl
+@HiveField(0) String? id,@HiveField(1) String? content,@HiveField(2) String? authorId,@HiveField(3) String? createdAt,@HiveField(4) int? likes,@HiveField(5) bool isLiked,@HiveField(6) String? imageUrl
 });
 
 
@@ -71,14 +71,14 @@ class _$PostModelCopyWithImpl<$Res>
 
 /// Create a copy of PostModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? content = null,Object? authorId = null,Object? createdAt = null,Object? likes = null,Object? isLiked = null,Object? imageUrl = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? content = freezed,Object? authorId = freezed,Object? createdAt = freezed,Object? likes = freezed,Object? isLiked = null,Object? imageUrl = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
-as String,authorId: null == authorId ? _self.authorId : authorId // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as String,likes: null == likes ? _self.likes : likes // ignore: cast_nullable_to_non_nullable
-as int,isLiked: null == isLiked ? _self.isLiked : isLiked // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
+as String?,authorId: freezed == authorId ? _self.authorId : authorId // ignore: cast_nullable_to_non_nullable
+as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,likes: freezed == likes ? _self.likes : likes // ignore: cast_nullable_to_non_nullable
+as int?,isLiked: null == isLiked ? _self.isLiked : isLiked // ignore: cast_nullable_to_non_nullable
 as bool,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -165,7 +165,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String id, @HiveField(1)  String content, @HiveField(2)  String authorId, @HiveField(3)  String createdAt, @HiveField(4)  int likes, @HiveField(5)  bool isLiked, @HiveField(6)  String? imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String? id, @HiveField(1)  String? content, @HiveField(2)  String? authorId, @HiveField(3)  String? createdAt, @HiveField(4)  int? likes, @HiveField(5)  bool isLiked, @HiveField(6)  String? imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostModel() when $default != null:
 return $default(_that.id,_that.content,_that.authorId,_that.createdAt,_that.likes,_that.isLiked,_that.imageUrl);case _:
@@ -186,7 +186,7 @@ return $default(_that.id,_that.content,_that.authorId,_that.createdAt,_that.like
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String id, @HiveField(1)  String content, @HiveField(2)  String authorId, @HiveField(3)  String createdAt, @HiveField(4)  int likes, @HiveField(5)  bool isLiked, @HiveField(6)  String? imageUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String? id, @HiveField(1)  String? content, @HiveField(2)  String? authorId, @HiveField(3)  String? createdAt, @HiveField(4)  int? likes, @HiveField(5)  bool isLiked, @HiveField(6)  String? imageUrl)  $default,) {final _that = this;
 switch (_that) {
 case _PostModel():
 return $default(_that.id,_that.content,_that.authorId,_that.createdAt,_that.likes,_that.isLiked,_that.imageUrl);case _:
@@ -206,7 +206,7 @@ return $default(_that.id,_that.content,_that.authorId,_that.createdAt,_that.like
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String id, @HiveField(1)  String content, @HiveField(2)  String authorId, @HiveField(3)  String createdAt, @HiveField(4)  int likes, @HiveField(5)  bool isLiked, @HiveField(6)  String? imageUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String? id, @HiveField(1)  String? content, @HiveField(2)  String? authorId, @HiveField(3)  String? createdAt, @HiveField(4)  int? likes, @HiveField(5)  bool isLiked, @HiveField(6)  String? imageUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _PostModel() when $default != null:
 return $default(_that.id,_that.content,_that.authorId,_that.createdAt,_that.likes,_that.isLiked,_that.imageUrl);case _:
@@ -221,14 +221,14 @@ return $default(_that.id,_that.content,_that.authorId,_that.createdAt,_that.like
 @JsonSerializable()
 
 class _PostModel extends PostModel with DiagnosticableTreeMixin {
-  const _PostModel({@HiveField(0) required this.id, @HiveField(1) required this.content, @HiveField(2) required this.authorId, @HiveField(3) required this.createdAt, @HiveField(4) required this.likes, @HiveField(5) this.isLiked = false, @HiveField(6) this.imageUrl}): super._();
+  const _PostModel({@HiveField(0) this.id, @HiveField(1) this.content, @HiveField(2) this.authorId, @HiveField(3) this.createdAt, @HiveField(4) this.likes, @HiveField(5) this.isLiked = false, @HiveField(6) this.imageUrl}): super._();
   factory _PostModel.fromJson(Map<String, dynamic> json) => _$PostModelFromJson(json);
 
-@override@HiveField(0) final  String id;
-@override@HiveField(1) final  String content;
-@override@HiveField(2) final  String authorId;
-@override@HiveField(3) final  String createdAt;
-@override@HiveField(4) final  int likes;
+@override@HiveField(0) final  String? id;
+@override@HiveField(1) final  String? content;
+@override@HiveField(2) final  String? authorId;
+@override@HiveField(3) final  String? createdAt;
+@override@HiveField(4) final  int? likes;
 @override@JsonKey()@HiveField(5) final  bool isLiked;
 @override@HiveField(6) final  String? imageUrl;
 
@@ -271,7 +271,7 @@ abstract mixin class _$PostModelCopyWith<$Res> implements $PostModelCopyWith<$Re
   factory _$PostModelCopyWith(_PostModel value, $Res Function(_PostModel) _then) = __$PostModelCopyWithImpl;
 @override @useResult
 $Res call({
-@HiveField(0) String id,@HiveField(1) String content,@HiveField(2) String authorId,@HiveField(3) String createdAt,@HiveField(4) int likes,@HiveField(5) bool isLiked,@HiveField(6) String? imageUrl
+@HiveField(0) String? id,@HiveField(1) String? content,@HiveField(2) String? authorId,@HiveField(3) String? createdAt,@HiveField(4) int? likes,@HiveField(5) bool isLiked,@HiveField(6) String? imageUrl
 });
 
 
@@ -288,14 +288,14 @@ class __$PostModelCopyWithImpl<$Res>
 
 /// Create a copy of PostModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? content = null,Object? authorId = null,Object? createdAt = null,Object? likes = null,Object? isLiked = null,Object? imageUrl = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? content = freezed,Object? authorId = freezed,Object? createdAt = freezed,Object? likes = freezed,Object? isLiked = null,Object? imageUrl = freezed,}) {
   return _then(_PostModel(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
-as String,authorId: null == authorId ? _self.authorId : authorId // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as String,likes: null == likes ? _self.likes : likes // ignore: cast_nullable_to_non_nullable
-as int,isLiked: null == isLiked ? _self.isLiked : isLiked // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
+as String?,authorId: freezed == authorId ? _self.authorId : authorId // ignore: cast_nullable_to_non_nullable
+as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,likes: freezed == likes ? _self.likes : likes // ignore: cast_nullable_to_non_nullable
+as int?,isLiked: null == isLiked ? _self.isLiked : isLiked // ignore: cast_nullable_to_non_nullable
 as bool,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

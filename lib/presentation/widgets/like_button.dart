@@ -37,11 +37,12 @@ class _LikeButtonState extends State<LikeButton>
 
   @override
   Widget build(BuildContext context) {
+    final likes = widget.post.likes ?? 0;
     return GestureDetector(
       onTap: () async {
         await _controller.forward();
         await _controller.reverse();
-        context.read<FeedCubit>().likePost(widget.post.id);
+        context.read<FeedCubit>().likePost(widget.post.id ?? '');
       },
       child: Row(
         children: [
@@ -54,7 +55,7 @@ class _LikeButtonState extends State<LikeButton>
             ),
           ),
           SizedBox(width: 4),
-          if (widget.post.likes > 0)
+          if (likes > 0)
             Text(
               widget.post.likes.toString(),
               style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
