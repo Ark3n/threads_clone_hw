@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threads_clone/data/datasources/local_post_data_source.dart';
+import 'package:threads_clone/data/models/comment_model.dart';
 import 'package:threads_clone/data/models/post_model.dart';
 import 'package:threads_clone/data/repositories/post_repository_impl.dart';
 import 'package:threads_clone/domain/entities/post.dart';
@@ -13,6 +14,7 @@ Future<void> main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(PostModelAdapter());
+  Hive.registerAdapter(CommentModelAdapter());
   await _seedData();
   runApp(const MyApp());
 }

@@ -6,7 +6,7 @@ part 'comment_model.g.dart';
 part 'comment_model.freezed.dart';
 
 @freezed
-@HiveType(typeId: 1)
+@HiveType(typeId: 101)
 abstract class CommentModel with _$CommentModel {
   const CommentModel._();
 
