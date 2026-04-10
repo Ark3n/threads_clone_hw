@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:threads_clone/data/datasources/local_post_data_source.dart';
+import 'package:threads_clone/data/repositories/post_repository_impl.dart';
 import 'package:threads_clone/domain/entities/post.dart';
+import 'package:threads_clone/presentation/bloc/profile/profile_cubit.dart';
 import 'package:threads_clone/presentation/screens/comments_screen.dart';
+import 'package:threads_clone/presentation/screens/profile_screen.dart';
 import 'package:threads_clone/presentation/widgets/like_button.dart';
 
 class PostCard extends StatelessWidget {
@@ -14,7 +19,20 @@ class PostCard extends StatelessWidget {
       child: Row(
         children: [
           // Avatar
-          CircleAvatar(radius: 20, child: Icon(Icons.person)),
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => BlocProvider(
+                  create: (context) =>
+                      ProfileCubit(PostRepositoryImpl(LocalPostDataSource()))
+                        ..loadProfile(post.authorId!),
+                  child: ProfileScreen(userId: post.authorId!),
+                ),
+              ),
+            ),
+            child: CircleAvatar(radius: 20, child: Icon(Icons.person)),
+          ),
           SizedBox(width: 12),
           Expanded(
             child: Column(

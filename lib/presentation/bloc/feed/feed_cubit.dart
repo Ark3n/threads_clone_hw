@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:threads_clone/domain/entities/post.dart';
 import 'package:threads_clone/domain/repositories/post_repository.dart';
-import 'package:threads_clone/presentation/bloc/feed_state.dart';
+import 'package:threads_clone/presentation/bloc/feed/feed_state.dart';
 
 class FeedCubit extends Cubit<FeedState> {
   final PostRepository _repository;

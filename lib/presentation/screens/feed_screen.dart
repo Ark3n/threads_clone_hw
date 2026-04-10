@@ -4,8 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:threads_clone/data/datasources/local_post_data_source.dart';
 import 'package:threads_clone/data/repositories/post_repository_impl.dart';
 import 'package:threads_clone/presentation/bloc/create_post/create_post_cubit.dart';
-import 'package:threads_clone/presentation/bloc/feed_cubit.dart';
-import 'package:threads_clone/presentation/bloc/feed_state.dart';
+import 'package:threads_clone/presentation/bloc/feed/feed_cubit.dart';
+import 'package:threads_clone/presentation/bloc/feed/feed_state.dart';
 import 'package:threads_clone/presentation/screens/create_post_screen.dart';
 import 'package:threads_clone/presentation/widgets/post_card.dart';
 

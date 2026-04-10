@@ -26,4 +26,11 @@ class LocalPostDataSource {
     final box = await _box;
     await box.put(post.id, post);
   }
+
+  Future<List<PostModel>> getPostByUser(String authId) async {
+    final box = await _box;
+    final posts = box.values.where((e) => e.authorId == authId).toList();
+    posts.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+    return posts;
+  }
 }

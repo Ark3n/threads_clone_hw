@@ -9,4 +9,7 @@ abstract class PostRepository {
 
   // Like post
   Future<void> likePost(String postId);
+
+  // Get user posts
+  Future<List<Post>> getPostsByUser(String authId);
 }

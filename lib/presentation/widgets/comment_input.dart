@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:threads_clone/presentation/bloc/comments/comments_cubit.dart';
 import 'package:threads_clone/presentation/bloc/comments/comments_state.dart';
 
@@ -28,70 +27,62 @@ class _CommentInputState extends State<CommentInput> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CommentsCubit, CommentsState>(
-      listenWhen: (previous, current) => previous.status != current.status,
-      listener: (context, state) {
-        if (state.status == CommentStatus.success) {
-          _controller.clear();
-        }
-        if (state.status == CommentStatus.failure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text('Something went wrong ')));
-        }
-      },
-      builder: (context, state) => Padding(
-        padding: const EdgeInsetsGeometry.symmetric(
-          horizontal: 20,
-          vertical: 12,
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsetsGeometry.only(
+          left: 16,
+          right: 8,
+          top: 8,
+          bottom: MediaQuery.of(context).viewInsets.bottom > 0 ? 4 : 8,
         ),
-        child: Column(
+        child: Row(
           children: [
-            Row(
-              children: [
-                // Avatar
-                CircleAvatar(),
-                const SizedBox(width: 10),
-
-                // TextFormField
-                Expanded(
-                  child: TextFormField(
+            // Avatar
+            CircleAvatar(
+              radius: 16,
+              backgroundColor: Colors.black,
+              child: Text(
+                'M',
+                style: TextStyle(color: Colors.white, fontSize: 12),
+              ),
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              child: BlocBuilder<CommentsCubit, CommentsState>(
+                // widget rebuilt only when inputText changed
+                buildWhen: (prev, curr) => prev.inputText != curr.inputText,
+                builder: (context, state) {
+                  return TextFormField(
                     controller: _controller,
                     decoration: InputDecoration(
+                      hintText: 'add comment',
+                      hintStyle: TextStyle(color: Colors.grey.shade400),
+                      // remove all borders
                       border: InputBorder.none,
-                      hintText: 'add a comment',
+                      // remove padding
+                      contentPadding: EdgeInsets.zero,
                     ),
-                    onChanged: (value) {
-                      context.read<CommentsCubit>().inputChanged(value);
-                    },
-                  ),
-                ),
-                SizedBox(width: 10),
-                // Send comment button
-                GestureDetector(
-                  onTap: state.canSubmit
-                      ? () async {
-                          await context.read<CommentsCubit>().addComment();
-                        }
-                      : null,
-                  child: Icon(
-                    Icons.send,
-                    color: state.canSubmit ? Colors.black : Colors.red,
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              width: 120,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.black54,
-                borderRadius: BorderRadius.circular(2),
+                    onChanged: context.read<CommentsCubit>().inputChanged,
+                    onFieldSubmitted: (_) => _submit(context),
+                  );
+                },
               ),
+            ),
+            IconButton(
+              onPressed: () {
+                _submit(context);
+              },
+              icon: Icon(Icons.send_rounded),
             ),
           ],
         ),
       ),
     );
+  }
+
+  // methods save comments to Have
+  void _submit(BuildContext context) {
+    context.read<CommentsCubit>().addComment();
+    _controller.clear();
   }
 }
