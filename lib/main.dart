@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:threads_clone/data/datasources/local_post_data_source.dart';
 import 'package:threads_clone/data/models/comment_model.dart';
 import 'package:threads_clone/data/models/post_model.dart';
@@ -12,6 +14,16 @@ import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // load supabase key and api from .env file
+  await dotenv.load(fileName: '.env');
+
+  // Initialize Supabase
+  await Supabase.initialize(
+    url: dotenv.env['API_URL'] ?? '',
+    anonKey: dotenv.env['API_KEY'] ?? '',
+  );
+
+  // Hive DB
   await Hive.initFlutter();
   Hive.registerAdapter(PostModelAdapter());
   Hive.registerAdapter(CommentModelAdapter());
@@ -19,6 +31,7 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+// MOCK data
 Future<void> _seedData() async {
   final box = await Hive.openBox<PostModel>('posts');
   // Mock data Posts
