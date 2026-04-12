@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CommentModel implements DiagnosticableTreeMixin {
 
-@HiveField(0) String? get id;@HiveField(1) String? get postId;@HiveField(2) String? get authorId;@HiveField(3) String? get content;@HiveField(4) String? get createdAt;
+@HiveField(0) String? get id;@HiveField(1)@JsonKey(name: 'post_id') String? get postId;@HiveField(2)@JsonKey(name: 'author_id') String? get authorId;@HiveField(3) String? get content;@HiveField(4)@JsonKey(name: 'created_at') String? get createdAt;
 /// Create a copy of CommentModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -54,7 +54,7 @@ abstract mixin class $CommentModelCopyWith<$Res>  {
   factory $CommentModelCopyWith(CommentModel value, $Res Function(CommentModel) _then) = _$CommentModelCopyWithImpl;
 @useResult
 $Res call({
-@HiveField(0) String? id,@HiveField(1) String? postId,@HiveField(2) String? authorId,@HiveField(3) String? content,@HiveField(4) String? createdAt
+@HiveField(0) String? id,@HiveField(1)@JsonKey(name: 'post_id') String? postId,@HiveField(2)@JsonKey(name: 'author_id') String? authorId,@HiveField(3) String? content,@HiveField(4)@JsonKey(name: 'created_at') String? createdAt
 });
 
 
@@ -163,7 +163,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String? id, @HiveField(1)  String? postId, @HiveField(2)  String? authorId, @HiveField(3)  String? content, @HiveField(4)  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String? id, @HiveField(1)@JsonKey(name: 'post_id')  String? postId, @HiveField(2)@JsonKey(name: 'author_id')  String? authorId, @HiveField(3)  String? content, @HiveField(4)@JsonKey(name: 'created_at')  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CommentModel() when $default != null:
 return $default(_that.id,_that.postId,_that.authorId,_that.content,_that.createdAt);case _:
@@ -184,7 +184,7 @@ return $default(_that.id,_that.postId,_that.authorId,_that.content,_that.created
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String? id, @HiveField(1)  String? postId, @HiveField(2)  String? authorId, @HiveField(3)  String? content, @HiveField(4)  String? createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String? id, @HiveField(1)@JsonKey(name: 'post_id')  String? postId, @HiveField(2)@JsonKey(name: 'author_id')  String? authorId, @HiveField(3)  String? content, @HiveField(4)@JsonKey(name: 'created_at')  String? createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _CommentModel():
 return $default(_that.id,_that.postId,_that.authorId,_that.content,_that.createdAt);case _:
@@ -204,7 +204,7 @@ return $default(_that.id,_that.postId,_that.authorId,_that.content,_that.created
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String? id, @HiveField(1)  String? postId, @HiveField(2)  String? authorId, @HiveField(3)  String? content, @HiveField(4)  String? createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String? id, @HiveField(1)@JsonKey(name: 'post_id')  String? postId, @HiveField(2)@JsonKey(name: 'author_id')  String? authorId, @HiveField(3)  String? content, @HiveField(4)@JsonKey(name: 'created_at')  String? createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _CommentModel() when $default != null:
 return $default(_that.id,_that.postId,_that.authorId,_that.content,_that.createdAt);case _:
@@ -219,14 +219,14 @@ return $default(_that.id,_that.postId,_that.authorId,_that.content,_that.created
 @JsonSerializable()
 
 class _CommentModel extends CommentModel with DiagnosticableTreeMixin {
-  const _CommentModel({@HiveField(0) this.id, @HiveField(1) this.postId, @HiveField(2) this.authorId, @HiveField(3) this.content, @HiveField(4) this.createdAt}): super._();
+  const _CommentModel({@HiveField(0) this.id, @HiveField(1)@JsonKey(name: 'post_id') this.postId, @HiveField(2)@JsonKey(name: 'author_id') this.authorId, @HiveField(3) this.content, @HiveField(4)@JsonKey(name: 'created_at') this.createdAt}): super._();
   factory _CommentModel.fromJson(Map<String, dynamic> json) => _$CommentModelFromJson(json);
 
 @override@HiveField(0) final  String? id;
-@override@HiveField(1) final  String? postId;
-@override@HiveField(2) final  String? authorId;
+@override@HiveField(1)@JsonKey(name: 'post_id') final  String? postId;
+@override@HiveField(2)@JsonKey(name: 'author_id') final  String? authorId;
 @override@HiveField(3) final  String? content;
-@override@HiveField(4) final  String? createdAt;
+@override@HiveField(4)@JsonKey(name: 'created_at') final  String? createdAt;
 
 /// Create a copy of CommentModel
 /// with the given fields replaced by the non-null parameter values.
@@ -267,7 +267,7 @@ abstract mixin class _$CommentModelCopyWith<$Res> implements $CommentModelCopyWi
   factory _$CommentModelCopyWith(_CommentModel value, $Res Function(_CommentModel) _then) = __$CommentModelCopyWithImpl;
 @override @useResult
 $Res call({
-@HiveField(0) String? id,@HiveField(1) String? postId,@HiveField(2) String? authorId,@HiveField(3) String? content,@HiveField(4) String? createdAt
+@HiveField(0) String? id,@HiveField(1)@JsonKey(name: 'post_id') String? postId,@HiveField(2)@JsonKey(name: 'author_id') String? authorId,@HiveField(3) String? content,@HiveField(4)@JsonKey(name: 'created_at') String? createdAt
 });
 
 

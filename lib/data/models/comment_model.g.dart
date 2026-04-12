@@ -59,17 +59,17 @@ class CommentModelAdapter extends TypeAdapter<CommentModel> {
 _CommentModel _$CommentModelFromJson(Map<String, dynamic> json) =>
     _CommentModel(
       id: json['id'] as String?,
-      postId: json['postId'] as String?,
-      authorId: json['authorId'] as String?,
+      postId: json['post_id'] as String?,
+      authorId: json['author_id'] as String?,
       content: json['content'] as String?,
-      createdAt: json['createdAt'] as String?,
+      createdAt: json['created_at'] as String?,
     );
 
 Map<String, dynamic> _$CommentModelToJson(_CommentModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'postId': instance.postId,
-      'authorId': instance.authorId,
+      'post_id': instance.postId,
+      'author_id': instance.authorId,
       'content': instance.content,
-      'createdAt': instance.createdAt,
+      'created_at': instance.createdAt,
     };

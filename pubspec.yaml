@@ -23,6 +23,7 @@ dependencies:
   supabase: ^2.10.4
   supabase_flutter: ^2.12.2
   flutter_dotenv: ^6.0.0
+  get_it: ^9.2.1
 
 dev_dependencies:
   flutter_test:

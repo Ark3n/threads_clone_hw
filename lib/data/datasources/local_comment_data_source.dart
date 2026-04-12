@@ -28,4 +28,9 @@ class LocalCommentDataSource {
     final comments = box.values.where((c) => c.postId == postId).toList();
     return comments.length;
   }
+
+  Future<void> clear() async {
+    final box = await _box;
+    await box.clear();
+  }
 }
